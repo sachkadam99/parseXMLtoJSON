@@ -1,0 +1,43 @@
+<div class="jumbotron">  
+    <div class="feeder-container">
+      <form class="form-inline row" name="feedForm">
+        <div class="form-group col-lg-9 col-md-6 col-sm-6">      
+          <div class="input-group custom-input">        
+            <input type="text" class="form-control" id="feedSearch" name="feedSearch" placeholder="Enter feed URL (ex: http://pf.tradetracker.net/?type=xml&limit=10 )" autocomplete="off" ng-model="feedSearch" >
+          </div>
+          
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <button type="submit" class="btn btn-danger" ng-click="getURLFeedProducts(feedSearch)" >Submit</button>
+        </div>    
+      </form>
+    </div>
+      <div layout="row" layout-align="space-between center" ng-show="products.length > 0">
+        <span class="product-title">Products</span>
+        <md-select ng-model="orderby" placeholder="Sort By" class="md-no-underline">
+          <md-option value="+name">Name</md-option>
+          <md-option value="-price">Price -- Low to High</md-option>
+          <md-option value="+price">Price -- High to Low</md-option>
+        </md-select>
+      </div>
+ <div class="row products-container" ng-show="products.length > 0">
+    <div class="productWrapper grow col-lg-4 col-md-6 col-sm-12" ng-repeat="product in products  | orderBy : orderby">    
+      <div class="imageDiv">
+         <img class="productImage" ng-src="{{product.imageURL}}">
+      </div>
+      <div class="product-details">          
+          <p class="product-name">{{product.name}}</p>
+          <p class="product-price">{{product.price.__text | currency : product.price._currency+" " }}</p>
+      </div>
+      <div class="product-add-button">
+        <a ui-sref="product({productID: product.productID})"><md-button  class="md-raised md-primary">View Details</md-button></a> 
+      </div>    
+  </div>
+ </div>
+ <div class="alert alert-warning" role="alert" ng-show="products.length === 0">
+    No products available
+</div>
+    <md-button class="md-fab" aria-label="Back to Top" ng-click="scrollToTop()">
+        <md-icon class="glyphicon glyphicon-chevron-up"></md-icon>
+    </md-button>
+</div>

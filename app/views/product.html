@@ -1,0 +1,31 @@
+<div class="jumbotron">
+    <div class="row product-detail-container">
+        <div class="col-lg-5 col-md-6 col-sm-12 pd-0 txt-center">
+            <div class="imageDiv">
+                <img class="productImage" ng-src="{{product.imageURL}}">
+            </div>               
+        </div>
+        <div class="col-lg-7 col-md-6 col-sm-12 product-info-details">
+            <product-category maincategory="product.categories.category" subcategory="product.additional"></product-category>          
+            <p class="product-name">{{product.name}}</p>
+            <p class="product-price">{{product.price.__text | currency : product.price._currency+" " }}</p>
+            <p class="product-delivery">
+                <span class="product-delivery-text">Delivery Cost :</span>
+                <span class="product-description">{{product.additional.field[2].__text | currency : product.price._currency+" " }}</span>
+            </p>
+            <p class="product-delivery">
+                <span class="product-delivery-text">Delivery Time :</span>
+                <span class="product-description">{{product.additional.field[7].__text }}</span>
+            </p>
+            <p class="product-delivery">
+                <span class="product-delivery-text">Description :</span>
+                <span class="product-description">{{product.description }}</span>
+            </p>
+            <div class="buttonsDiv">            
+                <a href="{{product.productURL}}" target="_blank">
+                    <md-button class="md-raised md-warn">go to store</md-button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
